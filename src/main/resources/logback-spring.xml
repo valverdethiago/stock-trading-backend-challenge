@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <springProfile name="dev,test,qa,prod">
+
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+      <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+        <providers>
+          <timestamp>
+            <fieldName>ts</fieldName>
+            <pattern>yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'</pattern>
+            <timeZone>UTC</timeZone>
+          </timestamp>
+          <message>
+            <fieldName>msg</fieldName>
+          </message>
+          <mdc/> <!-- MDC variables on the Thread will be written as JSON fields-->
+          <context/> <!--Outputs entries from logback's context -->
+          <logLevel/>
+          <loggerName/>
+
+          <pattern>
+            <pattern> <!-- we can add some custom fields to be sent with all the log entries. -->
+              {
+              "prd": "migration-runner"
+              }
+            </pattern>
+          </pattern>
+
+          <threadName/>
+
+          <logstashMarkers/> <!-- Useful so we can add extra information for specific log lines as Markers-->
+          <arguments/> <!--or through StructuredArguments-->
+
+          <stackTrace/>
+          <callerData>
+            <fieldName>caller</fieldName>
+            <classFieldName>[ignore]</classFieldName>
+            <methodFieldName>[ignore]</methodFieldName>
+            <fileFieldName>file</fileFieldName>
+            <lineFieldName>line</lineFieldName>
+          </callerData>
+        </providers>
+      </encoder>
+    </appender>
+  </springProfile>
+
+  <springProfile name="local">
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+      <encoder>
+        <pattern>%d %5p %t [%c] %X{requestId} - %m%n</pattern>
+      </encoder>
+    </appender>
+  </springProfile>
+  <springProfile name="localdev">
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+      <encoder>
+        <pattern>%d %5p %t [%c] %X{requestId} - %m%n</pattern>
+      </encoder>
+    </appender>
+  </springProfile>
+
+  <logger name="org.flywaydb" level="INFO"/>
+
+  <root level="INFO">
+    <appender-ref ref="consoleAppender"/>
+  </root>
+</configuration>

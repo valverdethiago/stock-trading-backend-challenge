@@ -1,0 +1,47 @@
+# Core spring settings
+embedded-db:
+  name: db
+  schema: trade
+  port: 5435
+spring:
+  profiles:
+    active: default,local
+  devtools:
+    add-properties: false
+  jackson:
+    date-format: "yyyy-MM-dd'T'HH:mm:ss"
+    time-zone: "UTC"
+    serialization:
+      indent-output: true
+      fail-on-empty-beans: false
+    deserialization:
+      fail-on-unknown-properties: false
+      use-big-decimal-for-floats: true
+    default-property-inclusion: non_null
+  datasource:
+    driverClassName: "org.postgresql.Driver"
+    url: jdbc:postgresql://localhost:${embedded-db.port}/${embedded-db.name}?currentSchema=${embedded-db.schema}
+    username: postgres
+    password:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 20
+      minimumIdle: 5
+      idleTimeout: 30000
+  flyway:
+    schemas:
+      - ${embedded-db.schema}
+    enabled: true
+    mixed: true
+http:
+  timeout-seconds: 60
+
+# Test database settings
+test-db:
+  name: db
+  schema: trade
+  port: 5436
+
+# Logging settings
+logging.level.: INFO
+logging.level.com.altruist: INFO

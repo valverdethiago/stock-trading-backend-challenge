@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender class="ch.qos.logback.core.ConsoleAppender" name="CONSOLE">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern>
+        %d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n
+      </Pattern>
+    </layout>
+  </appender>
+
+  <logger level="INFO" name="com.altruist"/>
+  <logger level="INFO" name="org.springframework.web"/>
+
+  <logger level="INFO" name="org.springframework.ws.client.MessageTracing"/>
+  <logger level="INFO" name="org.springframework.ws.server.MessageTracing"/>
+
+  <logger name="org.flywaydb" level="INFO"/>
+
+  <root level="WARN">
+    <appender-ref ref="CONSOLE"/>
+  </root>
+</configuration>

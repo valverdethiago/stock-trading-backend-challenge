@@ -1,0 +1,9 @@
+# Customize DB Port to avoid colision with dev one
+embedded-db:
+  port: 5436
+# Core spring settings
+spring:
+  profiles:
+    active: test
+  main:
+    allow-bean-definition-overriding: true

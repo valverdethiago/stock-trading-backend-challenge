@@ -1,0 +1,11 @@
+# Core spring settings
+spring:
+  profiles:
+    active: default, localdev
+  devtools:
+    add-properties: true
+
+# Logging settings
+logging.level.com.altruist: DEBUG
+logging.level.org.springframework.web.client: DEBUG
+logging.level.org.apache.http.wire: DEBUG

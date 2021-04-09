@@ -1,0 +1,1 @@
+GRANT ALL ON ALL TABLES in SCHEMA trade TO postgres;

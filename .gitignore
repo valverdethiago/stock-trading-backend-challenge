@@ -1,0 +1,36 @@
+logs/*
+tmp
+**/build
+out/
+/.settings
+.DS_Store
+.DS_Store?
+/.idea
+.gradle/
+*.orig
+*.iml
+*.ipr
+*.iws
+server.out
+**/*.log
+
+## frontend related
+/node_modules
+/dist/
+/.pnp
+.pnp.js
+/coverage
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+## negate exclusions
+!.gitkeep
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**
+!**/src/test/**
